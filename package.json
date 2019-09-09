@@ -1,0 +1,19 @@
+{
+  "name": "kgs",
+  "version": "1.0.0",
+  "description": "KGS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Medhavi Gupta",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "mongoose": "^5.6.11",
+    "node-cron": "^2.0.3"
+  }
+}
