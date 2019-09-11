@@ -1,21 +1,19 @@
-const newSchema = require('../models/schema_DB');
+const newSchema = require('../models/urlSchema');
 const cron = require("node-cron");
+const winston = require('winston')
 btoa = require('btoa');
 require('dotenv').config();
 
-module.exports = (app) => {
+exports.cron = function(){
     cron.schedule("0 6 * * *", function() {
-        console.log("running daily at 6");
-        for(var i = 0; i < process.env.TIMES;i++){
-            var d = new Date();
-            const code = d.getTime(); 
-            console.log(code);
-            const code1 = code % 1000;
-            const code2 = code / 10000000000; 
-            const encoded = btoa(code).substr(4,6);
-            const short_url = "http://shortened.com/" + code1 + encoded  + parseInt(code2);
-            console.log(short_url);
-            const note = new newSchema({
+        for(let i = 0; i < process.env.TIMES;i++){
+            let d = new Date();
+            let code = d.getTime(); 
+            let code1 = code % 1000;
+            let code2 = code / 10000000000; 
+            let encoded = btoa(code).substr(4,6);
+            let short_url = process.env.URL + code1 + encoded  + parseInt(code2);
+            let note = new newSchema({
                 urlCode: code,
                 shortUrl: short_url
             });    

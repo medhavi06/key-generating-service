@@ -16,7 +16,8 @@ mongoose.connect(db_url, {
     process.exit();
 });
 
-require('./cron/cronfile')(app);
+let cronJob = require('./cron/cronfile');
+cronJob.cron();
 
 app.listen(PORT, () => {
     console.log(`Server started on port`, PORT);
