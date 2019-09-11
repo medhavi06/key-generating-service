@@ -5,9 +5,9 @@ const PORT = 3000;
 require('dotenv').config();
 
 app.set('port', process.env.PORT || 4100);
-const db_url = process.env.DATABASE;
+const dbUrl = process.env.DATABASE;
 
-mongoose.connect(db_url, {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true
 }).then(() => {
     console.log("Connected to the DB");    
