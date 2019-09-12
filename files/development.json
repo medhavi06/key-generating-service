@@ -1,0 +1,12 @@
+{
+  "server" : {
+    "PORT": 3000
+  },
+  "mongoDB": {
+    "URL" : "mongodb+srv://medhavigupta6:mongodb@cluster0-h3jmt.mongodb.net/kgs?retryWrites=true&w=majority"
+  },
+  "cron": {
+    "shortURL" : "www.shortend.com",
+    "NumberOfKeys": 100
+  }
+}
