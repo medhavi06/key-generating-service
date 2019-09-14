@@ -3,6 +3,7 @@ const cronJob = require('./cron/cronfile');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const config = require('./config/config');
+const routes = require('./routes/route');
 app = express();
 
 mongoose.connect(config.mongoDB.URL, {
@@ -11,10 +12,15 @@ mongoose.connect(config.mongoDB.URL, {
     console.log("Connected to the DB");
 }).catch(err => {
     console.log("Couldn't connect to the DB...", err);
-    process.exit();
+    process.exit(0);
 });
 
 cronJob.cron();
-app.listen(config.server.PORT, () => {
+app.use('/', routes);
+
+app.listen(config.server.PORT, (error) => {
+    if (error){
+        console.log("server not able to start",error);
+    }
     console.log(`Server started on port`, config.server.PORT);
 });

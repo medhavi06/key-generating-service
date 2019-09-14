@@ -4,7 +4,7 @@ const btoa = require('btoa');
 const config = require('../config/config');
 
 exports.cron = function(){
-    cron.schedule("0 6 * * *", function() {
+    cron.schedule("10 0 * * *", function() {
         for(let i = 0; i < config.cron.NumberOfKeys;i++){
             let d = new Date();
             let code = d.getTime();

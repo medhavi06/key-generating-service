@@ -1,0 +1,8 @@
+version: "3"
+services:
+  key-generating-service:
+    restart: always
+    build: .
+    ports:
+      - "8081:3000"
+
