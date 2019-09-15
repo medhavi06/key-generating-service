@@ -1,7 +1,7 @@
 const fs = require('fs');
-const path = require('path');
 const NODE_ENV = process.env.NODE_ENV;
 let configBuffer = null;
+
 // Init config_buffer according to the NODE_ENV
 switch (NODE_ENV) {
     case 'production':
