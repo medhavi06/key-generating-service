@@ -1,7 +1,7 @@
 const express = require("express");
 const cronJob = require('./cron/cronfile');
 const mongoose = require('mongoose');
-require('dotenv').config();
+let bodyParser = require('body-parser');
 const config = require('./config/config');
 const routes = require('./routes/route');
 app = express();
@@ -15,7 +15,13 @@ mongoose.connect(config.mongoDB.URL, {
     process.exit(0);
 });
 
+app.use(bodyParser.urlencoded({
+    extended: true
+ }));
+ app.use(bodyParser.json());
+
 cronJob.cron();
+
 app.use('/', routes);
 
 app.listen(config.server.PORT, (error) => {

@@ -3,10 +3,13 @@
     "PORT": 3000
   },
   "mongoDB": {
-    "URL" : "XXXXXXXXXXXXXXXXXX"
+    "URL" : "XXXXXXXXXXXX"
   },
   "cron": {
     "shortURL" : "www.shortend.com",
-    "NumberOfKeys": 100
+    "numberOfKeys": 10
+  },
+  "getUrl": {
+    "numberOfUrls" : 10
   }
 }

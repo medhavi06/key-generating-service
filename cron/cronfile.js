@@ -5,15 +5,18 @@ const config = require('../config/config');
 
 exports.cron = function(){
     cron.schedule("10 0 * * *", function() {
-        for(let i = 0; i < config.cron.NumberOfKeys;i++){
+        for(let i = 0; i < config.cron.numberOfKeys; i++){
             let d = new Date();
             let code = d.getTime();
-            let code1 = code % 1000;
+            let code1 = code % 10000;
             let code2 = code / 10000000000;
-            let encoded = btoa(code).substr(4,6);
-            let shortUrlCreated = config.cron.shortURL + code1 + encoded  + parseInt(code2);
+            console.log(code + " : " + code1 + " : " + code2 + " : ");
+            console.log(code.toString().substr(3,6));
+            let encoded = code1 + btoa(code).substr(3,6) + parseInt(code2);
+            let shortUrlCreated = config.cron.shortURL + "/" + encoded;
+            console.log(shortUrlCreated);
             let note = new newSchema({
-                urlCode: code,
+                urlCode: encoded,
                 shortUrl: shortUrlCreated
             });
             note.save();

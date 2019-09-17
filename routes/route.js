@@ -1,7 +1,7 @@
 const router = require('express').Router();
+const notes = require('../routes/routeController');
 
-router.get('/ping', function (req, res) {
-    res.send('hello world')
-});
+router.get('/url/:noteId', notes.findOne);
+router.get('/url', notes.findAll);
 
 module.exports = router;
