@@ -9,15 +9,15 @@ exports.findOne = (req, res) => {
         if(!note) {
             return res.status(404).send({
                 message: "Not found for noteId " + req.params.noteId
-            });            
+            });
         }
         res.send(note);
-        
+
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
                 message: "Not found for noteId " + req.params.noteId
-            });                
+            });
         }
         return res.status(500).send({
             message: "Error retrieving data for noteId " + req.params.noteId
@@ -26,23 +26,22 @@ exports.findOne = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    UrlShorten.find({ }).limit(config.getUrl.numberOfUrls).exec(function(err, users) {
+    let deleteUrl = [];
+    UrlShorten.find({ }, {shortUrl:1, _id:0}).limit(config.getUrl.numberOfUrls).exec(function(err, urls) {
         if (err) throw err;
-        for (var i=0;i<users.length;i++) {
-            console.log(users[i].urlCode);
-            resUrls+=users[i].urlCode;
+        //console.log(urls);
+        for (let i=0;i<urls.length;i++){
+            deleteUrl.push(urls[i].shortUrl);
         }
-        res.send(resUrls);
-      /*  for(var j=0;j<arr.length;j++){
-            UrlShorten.findOneAndDelete({urlCode: arr[i]})
-            .then(notes => {
-                res.send(notes);
-            }).catch(err => {
-                res.status(500).send({
-                    message: err.message || "Error occurred"
-                });
-            });
-        }*/
+        console.log("deleteURL",deleteUrl);
+        res.status(200).json(urls);
+        UrlShorten.deleteMany({ shortUrl :{ $in: deleteUrl}}, function(err, data) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(data);
+            }
+        });
     });
- 
+
 };
