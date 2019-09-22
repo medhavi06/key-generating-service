@@ -1,9 +1,7 @@
 const UrlShorten = require('../models/urlSchema');
 const config = require('../config/config');
-let resUrls = "";
 
 exports.findOne = (req, res) => {
-    //UrlShorten.findOneAndDelete({ _id : req.params.noteId })
     UrlShorten.findById(req.params.noteId)
     .then(note => {
         if(!note) {
@@ -27,15 +25,15 @@ exports.findOne = (req, res) => {
 
 exports.findAll = (req, res) => {
     let deleteUrl = [];
-    UrlShorten.find({ }, {shortUrl:1, _id:0}).limit(config.getUrl.numberOfUrls).exec(function(err, urls) {
+    UrlShorten.find({ }, {urlCode:1, _id:0}).limit(config.getUrl.numberOfUrls).exec(function(err, urls) {
         if (err) throw err;
-        //console.log(urls);
+        console.log(urls);
         for (let i=0;i<urls.length;i++){
-            deleteUrl.push(urls[i].shortUrl);
+            deleteUrl.push(urls[i].urlCode);
         }
         console.log("deleteURL",deleteUrl);
         res.status(200).json(urls);
-        UrlShorten.deleteMany({ shortUrl :{ $in: deleteUrl}}, function(err, data) {
+        UrlShorten.deleteMany({ urlCode :{ $in: deleteUrl}}, function(err, data) {
             if (err) {
                 console.log(err);
             } else {

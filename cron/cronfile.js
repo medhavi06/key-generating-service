@@ -13,11 +13,8 @@ exports.cron = function(){
             console.log(code + " : " + code1 + " : " + code2 + " : ");
             console.log(code.toString().substr(3,6));
             let encoded = code1 + btoa(code).substr(3,6) + parseInt(code2);
-            let shortUrlCreated = config.cron.shortURL + "/" + encoded;
-            console.log(shortUrlCreated);
             let note = new newSchema({
-                urlCode: encoded,
-                shortUrl: shortUrlCreated
+                urlCode: encoded
             });
             note.save();
         }
