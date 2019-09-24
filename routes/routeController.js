@@ -32,7 +32,7 @@ exports.findAll = (req, res) => {
             deleteUrl.push(urls[i].urlCode);
         }
         console.log("deleteURL",deleteUrl);
-        res.status(200).json(urls);
+        res.json(urls);
         UrlShorten.deleteMany({ urlCode :{ $in: deleteUrl}}, function(err, data) {
             if (err) {
                 console.log(err);
