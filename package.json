@@ -16,7 +16,7 @@
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "grpc": "^1.23.3",
-    "mongoose": "^5.6.11",
+    "mongoose": "^5.7.5",
     "node-cron": "^2.0.3",
     "request": "^2.88.0",
     "uuid": "^3.3.3",
