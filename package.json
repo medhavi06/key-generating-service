@@ -15,7 +15,7 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
-    "grpc": "^1.23.3",
+    "grpc": "^1.24.9",
     "mongoose": "^5.6.11",
     "node-cron": "^2.0.3",
     "request": "^2.88.0",
